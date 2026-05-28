@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme{
+  --color-primary: #37478a;
+  --color-secondary: #6068af;
+
+  --font-authenia: "Authenia", sans-serif;
+  --font-better-saturday: "Better Saturday Free", sans-serif;
+  --font-glacial-indifference: "Glacial Indifference", sans-serif;
+  --font-more-sugar: "More Sugar", sans-serif;
+  --font-pacific-northwest: "Pacific Northwest Regular", sans-serif;
+}
+
+@font-face {
+  font-family: "Authenia";
+  src: url("./assets/fonts/Authenia-Font/Authenia.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pacific Northwest Regular";
+  src: url("./assets/fonts/pasific/PacificNorthwestRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Better Saturday Free";
+  src: url("./assets/fonts/Better saturday free/Better Saturday free.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("./assets/fonts/glacial-indifference/GlacialIndifference-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("./assets/fonts/glacial-indifference/GlacialIndifference-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "More Sugar";
+  src: url("./assets/fonts/more_sugar/MoreSugar-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "More Sugar";
+  src: url("./assets/fonts/more_sugar/MoreSugar-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
