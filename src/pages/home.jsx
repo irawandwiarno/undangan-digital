@@ -192,7 +192,7 @@ export default function Home() {
 
     return (
         <div className="relative min-h-dvh md:min-h-screen bg-white flex justify-center">
-            {true && (<main className='relative w-full md:max-w-sm overflow-y-auto overflow-x-hidden'>
+            {isOpen && (<main className='relative w-full md:max-w-sm overflow-y-auto overflow-x-hidden'>
                 <section className='relative min-h-screen overflow-hidden pt-20'>
                     {/* Bunga Kiri Atas */}
                     <div className="absolute top-0 left-0 -translate-x-4/8 -translate-y-1/8">
