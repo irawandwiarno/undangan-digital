@@ -949,7 +949,7 @@ export default function Home() {
             </main>)}
 
             <motion.div
-                className="absolute inset-0 hidden"
+                className="absolute inset-0"
                 initial={{ y: 0 }}
                 animate={{ y: isOpen ? '-110%' : 0 }}
                 transition={{ duration: 2, ease: 'easeInOut' }}>
