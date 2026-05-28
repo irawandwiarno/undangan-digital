@@ -2,7 +2,7 @@ import frameImg from '@assets/images/cover/frame.webp';
 import yai from '@assets/images/cover/yai.webp';
 import couple from '@assets/images/cover/pasangan.webp';
 
-export default function Cover({ isOpen = false, onOpen = () => { } }) {
+export default function Cover({ isOpen = false, tamu = '', onOpen = () => { } }) {
     return (
         <main className="w-screen h-dvh md:h-screen overflow-hidden bg-white flex items-center justify-center">
             <div className='relative w-full md:max-w-sm bg-white'>
@@ -26,8 +26,8 @@ export default function Cover({ isOpen = false, onOpen = () => { } }) {
                         <p className='text-base font-bold mt-5 text-center text-primary font-glacial-indifference'>
                             Dear,
                         </p>
-                        <p className='text-lg font-bold my-3 text-center line-clamp-1 text-primary font-glacial-indifference'>
-                            Melati
+                        <p className='text-lg capitalize font-bold my-3 text-center line-clamp-1 text-primary font-glacial-indifference'>
+                            {tamu || 'Anda'}
                         </p>
                         <div className='w-full mt-2 flex justify-center'>
                             <button onClick={onOpen} className='bg-primary text-white font-glacial-indifference mx-auto py-2 px-4 rounded-full hover:bg-primary/80 transition-colors duration-300'>

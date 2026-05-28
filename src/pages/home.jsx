@@ -48,6 +48,7 @@ export default function Home() {
     const [name, setName] = useState('')
     const [message, setMessage] = useState('')
     const [attendance, setAttendance] = useState('')
+    const [tamu, setTamu] = useState('')
     const [messages, setMessages] = useState([])
     const [submitting, setSubmitting] = useState(false)
     const audioRef = useRef(null)
@@ -63,6 +64,14 @@ export default function Home() {
         return () => {
             audioRef.current?.pause()
             audioRef.current = null
+        }
+    }, [])
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const guestName = params.get('g')?.trim()
+        if (guestName) {
+            setTamu(guestName)
         }
     }, [])
 
@@ -954,7 +963,7 @@ export default function Home() {
                 animate={{ y: isOpen ? '-110%' : 0 }}
                 transition={{ duration: 2, ease: 'easeInOut' }}>
 
-                <Cover onOpen={handleOpen} />
+                <Cover onOpen={handleOpen} tamu={tamu} />
             </motion.div>
 
             {isOpen && (
