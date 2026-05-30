@@ -75,6 +75,21 @@ export default function Home() {
         }
     }, [])
 
+    const sendWebhook = useCallback(async function trackVisitor(guestName) {
+            const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
+                method: "POST",
+                mode: "no-cors", 
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: guestName,
+                    date: new Date().toISOString(),
+                }),
+            });
+
+            console.log(res);
+            
+        }, [tamu]);
+
     const cleanedMessages = useMemo(() =>
         messages.map(m => ({
             ...m,
@@ -90,7 +105,7 @@ export default function Home() {
             setMessages(data ?? [])
         } catch (error) {
             console.error('Fetch guest messages failed', error)
-            toast.error('Gagal memuat ucapan dari Supabase')
+            // toast.error('Gagal memuat ucapan dari Supabase')
         }
     }, []);
 
@@ -183,6 +198,7 @@ export default function Home() {
     function handleOpen() {
         setIsOpen(true);
         togglePlay();
+        sendWebhook(tamu || 'Tamu tanpa nama');
     }
 
     async function togglePlay() {
