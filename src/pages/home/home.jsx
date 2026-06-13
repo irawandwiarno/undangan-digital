@@ -1,6 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { Check, Image, Mail, MapPin, Music, Sparkle, X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
+
+const WA = '+6285921785707';
 
 const TEMPLATES = [
   {
@@ -59,55 +62,57 @@ const TEMPLATES = [
   },
 ];
 
+
+
 const PLANS = [
   {
-    name: "Bunga",
-    price: "99.000",
+    name: "Basic",
+    price: "59.000",
     color: "#7a8c6e",
     highlight: false,
     features: [
-      "1 Template pilihan",
-      "Hingga 150 tamu",
-      "RSVP digital",
-      "Galeri foto (10 foto)",
-      "Peta lokasi",
-      "Aktif 3 bulan",
+      "Hingga 200 tamu",
+      "Aktif 1 bulan",
+      "Music latar",
+      "Amplop digital / gift registry",
     ],
-    cta: "Mulai Gratis",
+    notIncluded: [
+      "Foto & Video",
+      "Countdown hari acara",
+    ],
+    cta: "Pilih Basic",
   },
   {
-    name: "Melati",
-    price: "199.000",
+    name: "Pro",
+    price: "99.000",
     color: "#c0626b",
     highlight: true,
     features: [
-      "Semua template premium",
       "Tamu tak terbatas",
-      "RSVP + konfirmasi WhatsApp",
-      "Galeri foto & video (30 foto)",
-      "Peta lokasi + navigasi",
-      "Musik latar",
-      "Countdown hari H",
       "Aktif 6 bulan",
+      "Peta lokasi",
+      "Musik latar",
+      "Amplop digital / gift registry",
+      "Galeri foto & video",
+      "Countdown hari acara",
     ],
-    cta: "Pilih Melati",
+    cta: "Pilih Pro",
   },
   {
-    name: "Mawar",
-    price: "349.000",
+    name: "Custom",
+    priceDesc: "Mulai dari",
+    price: "499.000",
     color: "#b8860b",
     highlight: false,
     features: [
-      "Semua fitur Melati",
-      "Custom domain sendiri",
-      "Story perjalanan cinta",
-      "Amplop digital / gift registry",
-      "Statistik kunjungan tamu",
+      "Semua fitur Pro",
+      "Invitation Views Sistem",
+      "QR checkin untuk tamu",
       "Desain custom oleh tim kami",
-      "Aktif 12 bulan",
       "Support prioritas",
+      "Tambahan fitur sesuai kebutuhan",
     ],
-    cta: "Pilih Mawar",
+    cta: "Pilih Custom",
   },
 ];
 
@@ -163,9 +168,8 @@ function FloralSvg({ className }) {
           cy={100 + 28 * Math.sin((angle * Math.PI) / 180)}
           rx="14"
           ry="7"
-          transform={`rotate(${angle} ${100 + 28 * Math.cos((angle * Math.PI) / 180)} ${
-            100 + 28 * Math.sin((angle * Math.PI) / 180)
-          })`}
+          transform={`rotate(${angle} ${100 + 28 * Math.cos((angle * Math.PI) / 180)} ${100 + 28 * Math.sin((angle * Math.PI) / 180)
+            })`}
           fill="currentColor"
           opacity="0.3"
         />
@@ -177,9 +181,8 @@ function FloralSvg({ className }) {
           cy={100 + 60 * Math.sin((angle * Math.PI) / 180)}
           rx="18"
           ry="8"
-          transform={`rotate(${angle} ${100 + 60 * Math.cos((angle * Math.PI) / 180)} ${
-            100 + 60 * Math.sin((angle * Math.PI) / 180)
-          })`}
+          transform={`rotate(${angle} ${100 + 60 * Math.cos((angle * Math.PI) / 180)} ${100 + 60 * Math.sin((angle * Math.PI) / 180)
+            })`}
           fill="currentColor"
           opacity="0.15"
         />
@@ -220,11 +223,11 @@ function TemplateCard({ tpl, index }) {
     batik: (
       <svg viewBox="0 0 120 160" className="w-full h-full">
         <rect width="120" height="160" fill={tpl.color} />
-        {[0,1,2,3,4,5,6,7].map(i => (
-          <rect key={i} x={i*16} y="0" width="16" height="8" fill={tpl.accent} opacity="0.1" />
+        {[0, 1, 2, 3, 4, 5, 6, 7].map(i => (
+          <rect key={i} x={i * 16} y="0" width="16" height="8" fill={tpl.accent} opacity="0.1" />
         ))}
-        {[0,1,2,3,4,5,6,7].map(i => (
-          <rect key={i} x={i*16} y="152" width="16" height="8" fill={tpl.accent} opacity="0.1" />
+        {[0, 1, 2, 3, 4, 5, 6, 7].map(i => (
+          <rect key={i} x={i * 16} y="152" width="16" height="8" fill={tpl.accent} opacity="0.1" />
         ))}
         <text x="60" y="55" textAnchor="middle" fontSize="7" fill={tpl.accent} fontFamily="serif" opacity="0.8" letterSpacing="2">PERNIKAHAN</text>
         <text x="60" y="75" textAnchor="middle" fontSize="9" fill={tpl.accent} fontFamily="serif" opacity="0.9">Ahmad & Siti</text>
@@ -237,7 +240,7 @@ function TemplateCard({ tpl, index }) {
     dark: (
       <svg viewBox="0 0 120 160" className="w-full h-full">
         <rect width="120" height="160" fill={tpl.color} />
-        {[10,20,30].map((r,i) => (
+        {[10, 20, 30].map((r, i) => (
           <circle key={i} cx="60" cy="70" r={r} stroke={tpl.accent} strokeWidth="0.3" fill="none" opacity="0.3" />
         ))}
         <text x="60" y="55" textAnchor="middle" fontSize="18" fill={tpl.accent} opacity="0.6">✦</text>
@@ -290,7 +293,7 @@ function TemplateCard({ tpl, index }) {
       className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-md">
+      <div className="aspect-3/4 rounded-2xl overflow-hidden shadow-md">
         {patterns[tpl.preview]}
       </div>
       {tpl.badge && (
@@ -316,7 +319,7 @@ function TemplateCard({ tpl, index }) {
 
 // ─── Sections ────────────────────────────────────────────────────────────────
 
-function Hero() {
+function Hero({ sendWaMessage }) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#fdf8f4]">
       {/* Background decorations */}
@@ -340,16 +343,18 @@ function Hero() {
           </h1>
 
           <p className="text-stone-500 text-lg leading-relaxed mb-10 max-w-md">
-            Buat undangan pernikahan digital yang elegan, personal, dan tak terlupakan. Ratusan template cantik menanti kalian.
+            Buat undangan pernikahan digital yang elegan, personal, dan tak terlupakan. Banyak template cantik menanti kalian.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="bg-stone-800 hover:bg-stone-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-              Buat Undangan Gratis
+            <button
+              onClick={() => sendWaMessage("Halo, saya tertarik dengan layanan undangan digital. Bisa bantu saya?")}
+              className="bg-stone-800 w-3/4 hover:bg-stone-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+              Hubungi Kami
             </button>
-            <button className="border border-stone-300 hover:border-stone-400 text-stone-700 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-md">
+            {/* <button className="border border-stone-300 hover:border-stone-400 text-stone-700 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-md">
               Lihat Template →
-            </button>
+            </button> */}
           </div>
 
           {/* <div className="flex items-center gap-6 mt-12 pt-8 border-t border-stone-200">
@@ -370,11 +375,11 @@ function Hero() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-80 rounded-3xl shadow-2xl overflow-hidden z-20 rotate-2 animate-[float_6s_ease-in-out_infinite]">
             <svg viewBox="0 0 120 160" className="w-full h-full">
               <rect width="120" height="160" fill="#fdf3dc" />
-              {[0,1,2,3,4,5,6,7].map(i => (
-                <rect key={i} x={i*16} y="0" width="16" height="8" fill="#b8860b" opacity="0.12" />
+              {[0, 1, 2, 3, 4, 5, 6, 7].map(i => (
+                <rect key={i} x={i * 16} y="0" width="16" height="8" fill="#b8860b" opacity="0.12" />
               ))}
-              {[0,1,2,3,4,5,6,7].map(i => (
-                <rect key={i} x={i*16} y="152" width="16" height="8" fill="#b8860b" opacity="0.12" />
+              {[0, 1, 2, 3, 4, 5, 6, 7].map(i => (
+                <rect key={i} x={i * 16} y="152" width="16" height="8" fill="#b8860b" opacity="0.12" />
               ))}
               <text x="60" y="52" textAnchor="middle" fontSize="7" fill="#b8860b" fontFamily="serif" opacity="0.8" letterSpacing="2">PERNIKAHAN</text>
               <text x="60" y="72" textAnchor="middle" fontSize="10" fill="#b8860b" fontFamily="serif" opacity="0.95">Ahmad & Siti</text>
@@ -407,7 +412,7 @@ function Hero() {
           </div>
           {/* Bottom floating badge */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg px-5 py-3 flex items-center gap-3 z-30 whitespace-nowrap">
-            <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-rose-500 text-sm">✓</div>
+            <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-rose-500 text-sm"><Check /></div>
             <div>
               <p className="text-stone-800 text-xs font-semibold">Baru saja terkirim!</p>
               <p className="text-stone-400 text-[10px]">250 tamu diundang oleh Fariz & Ninda</p>
@@ -428,16 +433,16 @@ function Hero() {
 
 function Benefits() {
   const items = [
-    { icon: "✦", title: "Desain Elegan", desc: "50+ template dirancang oleh desainer profesional dengan estetika yang memukau." },
-    { icon: "✉", title: "Kirim via WhatsApp", desc: "Bagikan link undangan langsung ke kontak WhatsApp dengan sekali klik." },
-    { icon: "✓", title: "RSVP Digital", desc: "Lacak kehadiran tamu secara real-time tanpa perlu telepon satu per satu." },
-    { icon: "♪", title: "Musik Latar", desc: "Tambahkan lagu favorit kalian sebagai pengiring saat tamu membuka undangan." },
-    { icon: "❦", title: "Galeri Foto & Video", desc: "Tampilkan momen terbaik perjalanan cinta kalian dalam galeri yang indah." },
-    { icon: "◎", title: "Peta & Navigasi", desc: "Integrasi Google Maps agar tamu mudah menemukan lokasi pernikahan." },
+    { icon: <Sparkle />, title: "Desain Elegan", desc: "50+ template dirancang oleh desainer profesional dengan estetika yang memukau." },
+    { icon: <Mail />, title: "Kirim via WhatsApp", desc: "Bagikan link undangan langsung ke kontak WhatsApp dengan sekali klik." },
+    { icon: <Check />, title: "RSVP Digital", desc: "Lacak kehadiran tamu secara real-time tanpa perlu telepon satu per satu." },
+    { icon: <Music />, title: "Musik Latar", desc: "Tambahkan lagu favorit kalian sebagai pengiring saat tamu membuka undangan." },
+    { icon: <Image />, title: "Galeri Foto & Video", desc: "Tampilkan momen terbaik perjalanan cinta kalian dalam galeri yang indah." },
+    { icon: <MapPin />, title: "Peta & Navigasi", desc: "Integrasi Google Maps agar tamu mudah menemukan lokasi pernikahan." },
   ];
 
   return (
-    <section className="py-28 bg-white">
+    <section id="benefits" className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-16">
           <p className="text-rose-400 font-medium tracking-widest text-sm uppercase mb-3">Mengapa Kami?</p>
@@ -494,11 +499,10 @@ function Templates() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                active === cat
-                  ? "bg-stone-800 text-white shadow-md"
-                  : "bg-white border border-stone-200 text-stone-600 hover:border-stone-300"
-              }`}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${active === cat
+                ? "bg-stone-800 text-white shadow-md"
+                : "bg-white border border-stone-200 text-stone-600 hover:border-stone-300"
+                }`}
             >
               {cat}
             </button>
@@ -521,7 +525,7 @@ function Templates() {
   );
 }
 
-function Pricing() {
+function Pricing({ sendWaMessage }) {
   return (
     <section className="py-28 bg-white" id="pricing">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -539,11 +543,10 @@ function Pricing() {
           {PLANS.map((plan) => (
             <div
               key={plan.name}
-              className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-2 ${
-                plan.highlight
-                  ? "shadow-2xl ring-2 ring-rose-300 bg-stone-800 text-white"
-                  : "border border-stone-200 hover:shadow-xl bg-white"
-              }`}
+              className={`relative rounded-3xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-2 ${plan.highlight
+                ? "shadow-2xl ring-2 ring-rose-300 bg-stone-800 text-white"
+                : "border border-stone-200 hover:shadow-xl bg-white"
+                }`}
             >
               {plan.highlight && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-500 text-white text-xs font-bold px-5 py-1.5 rounded-full tracking-wider uppercase shadow">
@@ -557,27 +560,39 @@ function Pricing() {
                 >
                   {plan.name}
                 </p>
-                <p className={`text-4xl font-bold ${plan.highlight ? "text-rose-300" : "text-stone-800"}`}>
-                  Rp {plan.price}
+                <p className={`text-4xl font-bold flex flex-col ${plan.highlight ? "text-rose-300" : "text-stone-800"}`}>
+                  {plan.priceDesc && (<span className={`text-base font-bold align-top ${plan.highlight ? "text-rose-300" : "text-stone-800"}`}>
+                    {plan.priceDesc}
+                  </span>)}
+                  <span>
+                    Rp {plan.price}
+                  </span>
                 </p>
                 <p className={`text-sm ${plan.highlight ? "text-stone-300" : "text-stone-400"}`}>sekali bayar</p>
               </div>
 
               <ul className="space-y-3 flex-1 mb-8">
-                {plan.features.map((f) => (
+                {plan.features?.map((f) => (
                   <li key={f} className="flex items-start gap-3">
-                    <span className={`mt-0.5 flex-shrink-0 ${plan.highlight ? "text-rose-300" : "text-rose-400"}`}>✓</span>
+                    <span className={`shrink-0 ${plan.highlight ? "text-rose-300" : "text-rose-400"}`}><Check className="w-5 h-5" /></span>
+                    <span className={`text-sm ${plan.highlight ? "text-stone-200" : "text-stone-600"}`}>{f}</span>
+                  </li>
+                ))}
+
+                {plan.notIncluded?.map((f) => (
+                  <li key={f} className="flex items-start gap-3">
+                    <span className={`shrink-0 ${plan.highlight ? "text-rose-300" : "text-rose-400"}`}><X className="w-5 h-5" /></span>
                     <span className={`text-sm ${plan.highlight ? "text-stone-200" : "text-stone-600"}`}>{f}</span>
                   </li>
                 ))}
               </ul>
 
               <button
-                className={`w-full py-4 rounded-2xl font-semibold transition-all duration-300 ${
-                  plan.highlight
-                    ? "bg-rose-500 hover:bg-rose-400 text-white shadow-lg"
-                    : "border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white"
-                }`}
+                onClick={() => sendWaMessage(`Halo, saya tertarik dengan paket ${plan.name}. Bisa bantu saya?`)}
+                className={`w-full py-4 rounded-2xl font-semibold transition-all duration-300 ${plan.highlight
+                  ? "bg-rose-500 hover:bg-rose-400 text-white shadow-lg"
+                  : "border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white"
+                  }`}
               >
                 {plan.cta}
               </button>
@@ -595,7 +610,7 @@ function Pricing() {
 
 function Testimonials() {
   return (
-    <section className="py-28 bg-[#fdf8f4]">
+    <section id="testimonials" className="py-28 bg-[#fdf8f4]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-16">
           <p className="text-rose-400 font-medium tracking-widest text-sm uppercase mb-3">Testimoni</p>
@@ -610,9 +625,8 @@ function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className={`bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 hover:-translate-y-1 flex flex-col ${
-                i === 1 ? "lg:mt-8" : i === 3 ? "lg:mt-4" : ""
-              }`}
+              className={`bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 hover:-translate-y-1 flex flex-col ${i === 1 ? "lg:mt-8" : i === 3 ? "lg:mt-4" : ""
+                }`}
             >
               <StarRating count={t.rating} />
               <p className="text-stone-600 text-sm leading-relaxed my-4 flex-1">"{t.text}"</p>
@@ -638,7 +652,7 @@ function Testimonials() {
   );
 }
 
-function CTA() {
+function CTA({ sendWaMessage }) {
   return (
     <section className="py-28 bg-stone-800 relative overflow-hidden">
       <FloralSvg className="absolute -top-10 -right-10 w-64 h-64 text-rose-400 opacity-10" />
@@ -651,13 +665,19 @@ function CTA() {
           <em className="not-italic text-rose-300">Kalian Berdua</em>
         </h2>
         <p className="text-stone-300 text-lg mb-10 leading-relaxed">
-          Bergabung dengan ribuan pasangan yang telah mempercayai kami untuk hari paling berkesan dalam hidup mereka.
+          Bergabung lah dengan pasangan yang telah mempercayai kami untuk hari paling berkesan dalam hidup mereka.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-rose-500 hover:bg-rose-400 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-rose-500/30 hover:-translate-y-0.5">
-            Buat Undangan Gratis
+          <button
+            className="bg-rose-500 hover:bg-rose-400 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-rose-500/30 hover:-translate-y-0.5"
+            onClick={() => sendWaMessage("Halo, saya tertarik dengan layanan undangan digital. Bisa bantu saya?")}
+          >
+            Hubungi Kami Sekarang
           </button>
-          <button className="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300">
+          <button
+            className="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300"
+            onClick={() => sendWaMessage("Halo, saya ingin melihat contoh undangan. Bisa bantu saya?")}
+          >
             Lihat Contoh Undangan
           </button>
         </div>
@@ -676,18 +696,18 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "py-5"
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "py-5"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <span className="font-serif text-2xl text-stone-800">
+        <a href="#" className="font-serif text-2xl text-stone-800">
           Kulo<span className="text-rose-400">aturi</span>
-        </span>
+        </a>
         <div className="hidden md:flex items-center gap-8 text-stone-600 text-sm font-medium">
-          <a href="#templates" className="hover:text-rose-500 transition-colors">Template</a>
-          <a href="#pricing" className="hover:text-rose-500 transition-colors">Harga</a>
-          <a href="#" className="hover:text-rose-500 transition-colors">Cara Kerja</a>
+          {/* <a href="#templates" className="hover:text-rose-500 transition-colors">Template</a> */}
+          <a href="#benefits" className="hover:text-rose-500 transition-colors">Benefit</a>
+          <a href="#pricing" className="hover:text-rose-500 transition-colors">Prices</a>
+          <a href="#testimonials" className="hover:text-rose-500 transition-colors">Testimonials</a>
         </div>
       </div>
     </nav>
@@ -699,9 +719,9 @@ function Footer() {
     <footer className="bg-stone-900 text-stone-400 py-16 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
         <div>
-          <span className="font-serif text-2xl text-white block mb-3">
-            undang<span className="text-rose-400">.id</span>
-          </span>
+          <a href="#" className="font-serif text-2xl text-white">
+            Kulo<span className="text-rose-400">aturi</span>
+          </a>
           <p className="text-sm leading-relaxed">
             Platform undangan digital terpercaya untuk pernikahan impian kalian.
           </p>
@@ -709,7 +729,7 @@ function Footer() {
         {[
           ["Produk", ["Template", "Fitur", "Harga", "Contoh Undangan"]],
           ["Bantuan", ["Cara Membuat", "FAQ", "Kontak Kami", "WhatsApp"]],
-          ["Perusahaan", ["Tentang Kami", "Blog", "Karir", "Kebijakan Privasi"]],
+          // ["Perusahaan", ["Tentang Kami", "Blog", "Karir", "Kebijakan Privasi"]],
         ].map(([title, links]) => (
           <div key={title}>
             <p className="text-white font-semibold mb-4">{title}</p>
@@ -726,7 +746,7 @@ function Footer() {
         ))}
       </div>
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-stone-800 text-center text-sm">
-        © 2025 undang.id · Dibuat dengan ♡ di Indonesia
+        © 2025 KuloAturi · Dibuat dengan ♡ di Indonesia
       </div>
     </footer>
   );
@@ -735,15 +755,21 @@ function Footer() {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
+
+  const sendWaMessage = useCallback((message) => {
+    const url = `https://wa.me/${WA}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }, [WA]);
+
   return (
     <div className="font-sans antialiased">
       <Navbar />
-      <Hero />
+      <Hero sendWaMessage={sendWaMessage} />
       <Benefits />
-      <Templates />
-      <Pricing />
+      {/* <Templates /> */}
+      <Pricing sendWaMessage={sendWaMessage} />
       <Testimonials />
-      <CTA />
+      <CTA sendWaMessage={sendWaMessage} />
       <Footer />
     </div>
   );
