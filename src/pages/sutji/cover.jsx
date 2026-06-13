@@ -1,6 +1,6 @@
-import frameImg from '@assets/images/cover/frame.webp';
-import yai from '@assets/images/cover/yai.webp';
-import couple from '@assets/images/cover/pasangan.webp';
+import frameImg from '@assets/images/sutji/cover/frame.webp';
+import yai from '@assets/images/sutji/cover/yai.webp';
+import couple from '@assets/images/sutji/cover/pasangan.webp';
 
 export default function Cover({ isOpen = false, tamu = '', onOpen = () => { } }) {
     return (

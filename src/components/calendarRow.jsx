@@ -1,4 +1,4 @@
-import dateMark from '@assets/images/undangan/date-mark.webp';
+import dateMark from '@assets/images/sutji/undangan/date-mark.webp';
 import { motion } from 'framer-motion';
 
 

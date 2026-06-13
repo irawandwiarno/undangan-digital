@@ -11,37 +11,37 @@ import { createGuest, fetchGuests } from '@/utils/supabase';
 import { cleanProfanity } from '@/utils/badWordFilter';
 
 
-import std from '@assets/images/undangan/save-date.webp';
-import flowerLeftTop from '@assets/images/undangan/top-l-flower.webp';
-import flowerRightTop from '@assets/images/undangan/top-r-flower.webp';
-import blueFlower from '@assets/images/undangan/blue-flower.webp';
-import hero from '@assets/images/undangan/hero.webp';
-import frameDoa from '@assets/images/undangan/frameDoa.webp';
-import bismila from '@assets/images/undangan/bismila.webp';
-import qs from '@assets/images/undangan/qs.webp';
-import bride from '@assets/images/undangan/bride.webp';
-import ig from '@assets/images/undangan/ig.webp';
-import janji from '@assets/images/undangan/janji.webp';
-import pitaLove from '@assets/images/undangan/pita-love.webp';
-import balon from '@assets/images/undangan/balon.webp';
-import ring from '@assets/images/undangan/ring.webp';
-import pitaRed from '@assets/images/undangan/pita-red.webp';
-import calendarLove from '@assets/images/undangan/calendar-love.webp';
-import mapPin from '@assets/images/undangan/map-pin.webp';
-import um from '@assets/images/undangan/um.webp';
-import pantai from '@assets/images/undangan/pantai.webp';
-import lamar from '@assets/images/undangan/lamar.webp';
-import nikah from '@assets/images/undangan/nikah.webp';
-import potrait from '@assets/images/undangan/potrait.webp';
-import bri from '@assets/images/undangan/bri.webp';
-import spay from '@assets/images/undangan/spay.webp';
-import gpay from '@assets/images/undangan/gpay.webp';
-import dana from '@assets/images/undangan/dana.webp';
-import kado from '@assets/images/undangan/kado.webp';
-import kue from '@assets/images/undangan/kue.webp';
+import std from '@assets/images/sutji/undangan/save-date.webp';
+import flowerLeftTop from '@assets/images/sutji/undangan/top-l-flower.webp';
+import flowerRightTop from '@assets/images/sutji/undangan/top-r-flower.webp';
+import blueFlower from '@assets/images/sutji/undangan/blue-flower.webp';
+import hero from '@assets/images/sutji/undangan/hero.webp';
+import frameDoa from '@assets/images/sutji/undangan/frameDoa.webp';
+import bismila from '@assets/images/sutji/undangan/bismila.webp';
+import qs from '@assets/images/sutji/undangan/qs.webp';
+import bride from '@assets/images/sutji/undangan/bride.webp';
+import ig from '@assets/images/sutji/undangan/ig.webp';
+import janji from '@assets/images/sutji/undangan/janji.webp';
+import pitaLove from '@assets/images/sutji/undangan/pita-love.webp';
+import balon from '@assets/images/sutji/undangan/balon.webp';
+import ring from '@assets/images/sutji/undangan/ring.webp';
+import pitaRed from '@assets/images/sutji/undangan/pita-red.webp';
+import calendarLove from '@assets/images/sutji/undangan/calendar-love.webp';
+import mapPin from '@assets/images/sutji/undangan/map-pin.webp';
+import um from '@assets/images/sutji/undangan/um.webp';
+import pantai from '@assets/images/sutji/undangan/pantai.webp';
+import lamar from '@assets/images/sutji/undangan/lamar.webp';
+import nikah from '@assets/images/sutji/undangan/nikah.webp';
+import potrait from '@assets/images/sutji/undangan/potrait.webp';
+import bri from '@assets/images/sutji/undangan/bri.webp';
+import spay from '@assets/images/sutji/undangan/spay.webp';
+import gpay from '@assets/images/sutji/undangan/gpay.webp';
+import dana from '@assets/images/sutji/undangan/dana.webp';
+import kado from '@assets/images/sutji/undangan/kado.webp';
+import kue from '@assets/images/sutji/undangan/kue.webp';
 
 
-export default function Home() {
+export default function Sutji() {
     const [isOpen, setIsOpen] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [showMap, setShowMap] = useState(false)
