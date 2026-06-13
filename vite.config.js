@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/',
   resolve: {
     alias: [
       { find: '@assets', replacement: fileURLToPath(new URL('./src/assets', import.meta.url)) },
