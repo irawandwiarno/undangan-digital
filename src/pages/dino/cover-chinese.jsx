@@ -80,7 +80,7 @@ export default function CoverChinese({ onOpen, tamu = '' }) {
                 <div className="w-[66%] flex flex-col justify-center items-center gap-1 py-2 bg-linear-to-b to-[#ECDAC4] from-[#FFF5E3] rounded-xl">
                     <p className="text-[#3F1114] font-alike text-xs">A Place Reserved For,</p>
                     <div className="w-[94%] h-10 bg-linear-to-b from-[#ECDAC4] to-[#FFF5E3] rounded-lg flex items-center justify-center">
-                        <p className="text-[#3F1114] font-alike text-base">
+                        <p className="text-[#3F1114] font-alike text-base capitalize">
                             {tamu || 'Anda'}
                         </p>
                     </div>
