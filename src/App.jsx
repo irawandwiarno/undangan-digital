@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import './App.css'
 import HomePage from './pages/home/home'
 import SutjiPage from './pages/sutji/sutji'
+import Dino from './pages/dino/dino'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sutji" element={<SutjiPage />} />
+        <Route path="/dino-helen" element={<Dino />} />
       </Routes>
     </BrowserRouter>
   )
