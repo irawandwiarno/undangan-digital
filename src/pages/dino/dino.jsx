@@ -614,14 +614,14 @@ export default function Dino() {
                                 </FlowerHanging>
                             </div>
 
-                            <img src={stemp} alt="" className="absolute w-[17%] bottom-0 left-0 translate-x-34 translate-y-8 z-99" />
+                            <img src={stemp} alt="" className="absolute w-15 bottom-0 translate-y-8 z-99" />
                             <motion.div
                                 initial={{ opacity: 0, }}
                                 whileInView={{ opacity: 1, }}
                                 viewport={{ once: true, amount: 1, }}
                                 transition={{ duration: 2.5, ease: 'easeOut' }}
                                 className="flex justify-center items-center bg-linear-to-b from-[#F0C582] to-[#7C4200] w-[97%] h-[97%] rounded-4xl">
-                                <div className="flex flex-col justify-start items-center pt-9 bg-linear-to-b from-[#CC3947] to-[#411215] w-[99%] h-[99%] rounded-4xl">
+                                <div className="flex flex-col justify-start items-center pt-7 bg-linear-to-b from-[#CC3947] to-[#411215] w-[99%] h-[99%] rounded-4xl">
                                     <h3
                                         className="text-2xl text-center font-parisienne font-bold text-[#ECDAC4]">Doamu Sangat Berarti</h3>
                                     <p
