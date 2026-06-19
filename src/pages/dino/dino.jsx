@@ -1,5 +1,4 @@
 import { Copy, Disc3, Heart } from "lucide-react"
-import CoverDino from "./cover"
 import { motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Layout from "@/layout/main-layout"
@@ -27,7 +26,8 @@ import frameWayang from "@assets/images/chinese/main/frame-wayang.webp"
 import cincinPita from "@assets/images/chinese/main/cincin-pita.webp"
 import cincin from "@assets/images/chinese/main/cincin.webp"
 import stemp from "@assets/images/chinese/main/stemp.webp"
-import imgClosing from "@assets/images/chinese/main/img-closing.webp"
+import frameCircle from "@assets/images/chinese/main/frame-circle.webp"
+import nameClosing from "@assets/images/chinese/main/name-closing.webp"
 import ImageButton from "@/components/chinese/button-img"
 import bgButton from "@assets/images/chinese/cover/bg-button.webp"
 import logoKuloaturi from "@assets/images/global/kuloaturi-logo.webp"
@@ -55,19 +55,19 @@ export default function Dino() {
     const [submitting, setSubmitting] = useState(false)
     const audioRef = useRef(null)
 
-    // useEffect(() => {
-    //     // Prepare audio player — place your music file at public/music.mp3
-    //     try {
-    //         audioRef.current = new Audio('/music.mpeg')
-    //         audioRef.current.loop = true
-    //     } catch (e) {
-    //         console.warn('Audio not available', e)
-    //     }
-    //     return () => {
-    //         audioRef.current?.pause()
-    //         audioRef.current = null
-    //     }
-    // }, [])
+    useEffect(() => {
+        // Prepare audio player — place your music file at public/music.mp3
+        try {
+            audioRef.current = new Audio('/thousan-year.mp3')
+            audioRef.current.loop = true
+        } catch (e) {
+            console.warn('Audio not available', e)
+        }
+        return () => {
+            audioRef.current?.pause()
+            audioRef.current = null
+        }
+    }, [])
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search)
@@ -259,12 +259,12 @@ export default function Dino() {
         <Layout >
             {isOpen && (
                 <main className="overflow-x-hidden">
-                    <section className="relative min-h-screen flex items-center justify-center">
+                    <section className="relative min-h-180 flex items-center justify-center">
                         <img src={flower1} alt="flower bg" className="absolute -top-20 -left-10" />
                         <img src={flower1} alt="flower bg" className="absolute -bottom-5 -right-30" />
 
-                        <div className="absolute top-0 w-[85%] h-[65%] bg-linear-to-b rounded-b-[4rem] from-[#F8F7F2] to-[#ECDAC4]"></div>
-                        <div className="absolute top-0 w-[80%] h-[64%] bg-linear-to-b rounded-b-[4rem] from-[#ECDAC4] to-[#F8F7F2]"></div>
+                        <div className="absolute top-0 w-[85%] h-[65%] max-h-120  bg-linear-to-b rounded-b-[4rem] from-[#F8F7F2] to-[#ECDAC4]"></div>
+                        <div className="absolute top-0 w-[80%] h-[64%] max-h-120 bg-linear-to-b rounded-b-[4rem] from-[#ECDAC4] to-[#F8F7F2]"></div>
                         <div className="absolute top-15 flex flex-col items-center justify-center">
 
                             <motion.div
@@ -313,11 +313,11 @@ export default function Dino() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 2, ease: "easeOut", delay: 2 }}
                             viewport={{ once: true }}
-                            className="absolute top-[55%] w-[80%]">
+                            className="absolute top-100 w-[80%]">
                             <img src={mail} alt="" />
                         </motion.div>
                     </section>
-                    <section className="relative overflow-hidden min-h-screen flex items-start justify-center">
+                    <section className="relative min-h-180 flex items-start justify-center">
                         <div className="absolute top-0 w-2/3 -translate-y-15">
                             <FlowerHanging>
                                 <img src={flower2} alt="flower rose" />
@@ -334,12 +334,12 @@ export default function Dino() {
                                 <img src={flower2} alt="flower rose" />
                             </FlowerHanging>
                         </div>
-                        <div className="absolute bottom-0 w-35 -translate-x-25">
+                        <div className="absolute bottom-0 w-35 -translate-x-30">
                             <FlowerGrounded>
                                 <img src={flower3} alt="flower bg" />
                             </FlowerGrounded>
                         </div>
-                        <div className="absolute bottom-0 w-35 translate-x-25 -scale-x-100">
+                        <div className="absolute bottom-0 w-35 translate-x-30 -scale-x-100">
                             <FlowerGrounded>
                                 <img src={flower3} alt="flower bg" />
                             </FlowerGrounded>
@@ -426,7 +426,7 @@ export default function Dino() {
                             <motion.img {...fadeItem(6)} src={loveRing} alt="image love ring" className="w-15 mt-5" />
                         </div>
                     </section>
-                    <section className="relative overflow-hidden min-h-[140vh] flex items-start justify-center">
+                    <section className="relative min-h-[140vh] flex items-start justify-center">
                         <img src={frameWayang} alt="flower bg" className="absolute top-0 w-40 translate-x-24 translate-y-3 opacity-50" />
                         <img src={frameWayang} alt="flower bg" className="absolute top-0 w-40 -translate-x-24 translate-y-3 opacity-50 -scale-x-100" />
 
@@ -452,7 +452,7 @@ export default function Dino() {
 
                         <div className="absolute flex flex-col items-center pt-5 text-[#3F1114]">
                             <motion.div
-                                className="absolute flex flex-col items-center pt-5 text-[#3F1114]"
+                                className="absolute flex w-75 flex-col items-center pt-5 text-[#3F1114]"
                                 variants={container}
                                 initial="hidden"
                                 whileInView="show"
@@ -598,7 +598,7 @@ export default function Dino() {
                             </motion.div>
                         </div>
                     </section>
-                    <section className="relative overflow-hidden min-h-screen flex flex-col items-center justify-start pt-10">
+                    <section className="relative min-h-180 flex flex-col items-center justify-start pt-10">
                         <motion.div
                             className="relative flex justify-center items-center bg-linear-to-b from-[#CC3947] to-[#411215] w-[95%] h-70 rounded-4xl z-10">
 
@@ -793,11 +793,16 @@ export default function Dino() {
 
                             {/* ilustrasi tengah dengan nama */}
                             <div className="relative z-10 w-full max-w-xs flex items-center justify-center my-2">
-                                <img src={imgClosing} alt="closing illustration" className="w-full object-contain" />
+                                <motion.img
+                                    whileTap={{ scale: 0.95 }}
+                                    animate={{ rotate: 360 }}
+                                    transition={{ repeat: Infinity , duration: 25, ease: 'linear' }}
+                                    src={frameCircle} alt="closing illustration" className="w-70 object-contain" />
+                                <img src={nameClosing} alt="" className="absolute w-40" />
                             </div>
 
                             {/* deskripsi */}
-                            <p className="relative mt-10 z-10 font-parastoo text-[#FFF3E2]/80 text-sm text-center max-w-[90%]">
+                            <p className="relative mt-5 z-10 font-parastoo text-[#FFF3E2]/80 text-sm text-center max-w-[90%]">
                                 "Setiap perjalanan memiliki awal, dan hari ini adalah awal dari perjalanan baru kami sebagai sebuah keluarga. Kami bersyukur karena di momen yang sederhana namun penuh makna ini, kami dapat berbagi kebahagiaan bersama orang-orang yang kami cintai."
                             </p>
 
