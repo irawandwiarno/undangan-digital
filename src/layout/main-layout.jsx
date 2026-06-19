@@ -23,7 +23,7 @@ export default function Layout({ children }) {
       </div>
 
       {/* kolom kanan — konten utama */}
-      <div className="w-full md:w-95 shrink-0 h-screen bg-white relative overflow-auto overflow-x-hidden">
+      <div className="w-full md:w-95 shrink-0 h-screen no-scrollbar bg-white relative overflow-auto overflow-x-hidden">
         {children}
       </div>
     </div>
