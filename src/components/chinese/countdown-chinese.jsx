@@ -58,7 +58,7 @@ function TimeBox({ value, label }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="w-full aspect-square rounded-xl bg-linear-to-b from-[#ECDAC4] to-[#FFF5E3] flex items-center justify-center">
-        <span className="text-[#3F1114] p-3 text-2xl md:text-5xl font-serif">
+        <span className="text-[#3F1114] p-3 text-3xl md:text-5xl font-parastoo">
           {value}
         </span>
       </div>

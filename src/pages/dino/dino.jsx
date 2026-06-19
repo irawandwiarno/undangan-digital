@@ -426,7 +426,7 @@ export default function Dino() {
                             <motion.img {...fadeItem(6)} src={loveRing} alt="image love ring" className="w-15 mt-5" />
                         </div>
                     </section>
-                    <section className="relative min-h-[140vh] flex items-start justify-center">
+                    <section className="relative min-h-[140vh] md:h-260 flex items-start justify-center">
                         <img src={frameWayang} alt="flower bg" className="absolute top-0 w-40 translate-x-24 translate-y-3 opacity-50" />
                         <img src={frameWayang} alt="flower bg" className="absolute top-0 w-40 -translate-x-24 translate-y-3 opacity-50 -scale-x-100" />
 
@@ -447,7 +447,7 @@ export default function Dino() {
                         </div>
 
 
-                        <div className="absolute h-[98%] md:max-h-screen inset-3 border border-[#E2BA7A] rounded-3xl" />
+                        <div className="absolute h-[98%] md:h-255 inset-3 border border-[#E2BA7A] rounded-3xl" />
 
 
                         <div className="absolute flex flex-col items-center pt-5 text-[#3F1114]">
@@ -589,7 +589,7 @@ export default function Dino() {
                                 </motion.div>
 
                                 {/* Countdown */}
-                                <motion.div className="mt-5" variants={fadeUp}
+                                <motion.div className="mt-5 md:w-70" variants={fadeUp}
                                     transition={{ duration: 0.6, ease: "easeOut", }}
 
                                 >
