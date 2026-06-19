@@ -4,6 +4,7 @@ import './App.css'
 import HomePage from './pages/home/home'
 import SutjiPage from './pages/sutji/sutji'
 import Dino from './pages/dino/dino'
+import GuestLinkGenerator from './pages/link-generator/link-gen'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sutji" element={<SutjiPage />} />
         <Route path="/dino-helen" element={<Dino />} />
+        <Route path="/gen/:slug" element={<GuestLinkGenerator />} />
       </Routes>
     </BrowserRouter>
   )
