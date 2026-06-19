@@ -44,7 +44,7 @@ import { FlowerHanging, FlowerGrounded } from "@/utils/flower-jigle"
 export default function Dino() {
     const SLUG = "dino-helen";
     const [client, setClient] = useState();
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [showMap, setShowMap] = useState(false)
     const [name, setName] = useState('')
@@ -818,16 +818,16 @@ export default function Dino() {
                 </main>
             )}
 
-            {/* <motion.div
+            <motion.div
                 className="absolute inset-0"
                 initial={{ y: 0 }}
                 animate={{ y: isOpen ? '-110%' : 0 }}
                 transition={{ duration: 2, ease: 'easeInOut' }}>
 
                 <CoverChinese onOpen={handleOpen} tamu={tamu} />
-            </motion.div> */}
+            </motion.div>
 
-            {/* {isOpen && (
+            {isOpen && (
                 <motion.button
                     aria-label={isPlaying ? 'Stop music' : 'Play music'}
                     onClick={togglePlay}
@@ -837,7 +837,7 @@ export default function Dino() {
                     className={`fixed right-4 bottom-4 z-50 rounded-full p-3 shadow-lg text-white ${isPlaying ? 'bg-primary' : 'bg-primary/60'}`}>
                     <Disc3 size={20} />
                 </motion.button>
-            )} */}
+            )}
         </Layout>
     );
 }

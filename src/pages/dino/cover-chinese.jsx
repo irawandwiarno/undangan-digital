@@ -7,7 +7,7 @@ import bgButton from "@assets/images/chinese/cover/bg-button.webp"
 
 
 
-export default function CoverChinese({onOpen}) {
+export default function CoverChinese({onOpen, tamu = ''}) {
     return (
         <main className="relative bg-linear-to-b overflow-hidden from-[#3F1114] to-[#CE3947]  min-h-dvh md:min-h-screen flex items-center justify-center">
             <div className="absolute h-full md:max-h-screen inset-4 border border-[#E2BA7A] rounded-3xl" />
@@ -47,7 +47,7 @@ export default function CoverChinese({onOpen}) {
                     <p className="text-[#3F1114] font-alike text-xs">A Place Reserved For,</p>
                     <div className="w-[94%] h-10 bg-linear-to-b from-[#ECDAC4] to-[#FFF5E3] rounded-lg flex items-center justify-center">
                         <p className="text-[#3F1114] font-alike text-base">
-                            Guest
+                            {tamu || 'Anda'}
                         </p>
                     </div>
                 </div>
