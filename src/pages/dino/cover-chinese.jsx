@@ -60,9 +60,9 @@ export default function CoverChinese({ onOpen, tamu = '' }) {
             <div className="absolute w-3/4 h-3/4 bottom-0 rounded-t-full bg-linear-to-b from-[#401114] to-[#A62C34]"></div>
             <div className="absolute mt-40 flex flex-col items-center justify-center z-20">
                 <GradientText text='The intimate wedding of' className='text-xs font-alike mb-3' />
-                <GradientText text='Dino' className='text-5xl font-parisienne ' typing={true} />
+                <GradientText text='Dino' className='text-5xl font-parisienne ml-2' typing={true} />
                 <GradientText text='&' className='text-2xl -mt-2 font-parisienne' />
-                <GradientText text='Helen' className='text-5xl -mt-4 font-parisienne leading-20' typing={true} />
+                <GradientText text='Helen' className='text-5xl -mt-4 font-parisienne ml-2 leading-20' typing={true} />
                 <div className="w-50 h-px bg-yellow-400 mx-auto mb-4" />
                 <motion.p
                     initial={{ opacity: 0, }}
