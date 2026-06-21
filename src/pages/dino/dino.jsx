@@ -32,7 +32,7 @@ import ImageButton from "@/components/chinese/button-img"
 import bgButton from "@assets/images/chinese/cover/bg-button.webp"
 import logoKuloaturi from "@assets/images/global/kuloaturi-logo.webp"
 
-import bca from "@assets/images/bank/bca.webp"
+import bluBca from "@assets/images/bank/blue-bca.webp"
 import mandiri from "@assets/images/bank/mandiri.webp"
 import toast from "react-hot-toast"
 import { createGuest, fetchClientBySlug, fetchGuests } from "@/utils/supabase"
@@ -649,7 +649,10 @@ export default function Dino() {
                             <div className="absolite w-[95%] h-[95%] flex flex-col items-center bg-linear-to-b from-[#F8F7F2] to-[#ECDAC4] rounded-4xl">
                                 <div className="flex justify-center items-end h-full pb-1 px-3 gap-2">
                                     <div className="flex-1 bg-[#F8F7F2] rounded-2xl px-1 py-3 text-center flex flex-col items-center shadow-1xl">
-                                        <img src={bca} alt="logo bca" className="w-[80%]" />
+                                        <div className="w-20 h-11 overflow-hidden flex justify-center items-center rounded-lg">
+                                            <img src={bluBca} alt="logo bca" className="w-full object-cover object-center" />
+                                        </div>
+
                                         <p className="font-parastoo text-lg font-bold text-[#3F1114] m-0">005726959223</p>
                                         <p className="font-parastoo text-[#3F1114] text-xs -mt-2">HELEN OCTAVIANI</p>
                                         <button
@@ -723,7 +726,7 @@ export default function Dino() {
                                 {messages.length === 0 && (
                                     <p className='text-sm text-gray-500 text-center'>Belum ada ucapan. Jadilah yang pertama!</p>
                                 )}
-                                {cleanedMessages.map((m) => (
+                                {messages.map((m) => (
                                     <div key={m.id} className='w-[80%] mx-auto bg-white border border-[#3F1114] rounded-lg p-3'>
                                         <div className='flex items-center gap-2'>
                                             <p className='font-bold text-sm text-primary'>{m.name}</p>
@@ -796,7 +799,7 @@ export default function Dino() {
                                 <motion.img
                                     whileTap={{ scale: 0.95 }}
                                     animate={{ rotate: 360 }}
-                                    transition={{ repeat: Infinity , duration: 25, ease: 'linear' }}
+                                    transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
                                     src={frameCircle} alt="closing illustration" className="w-70 object-contain" />
                                 <img src={nameClosing} alt="" className="absolute w-40" />
                             </div>
@@ -839,7 +842,7 @@ export default function Dino() {
                     whileTap={{ scale: 0.95 }}
                     animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
                     transition={{ repeat: isPlaying ? Infinity : 0, duration: 2, ease: 'linear' }}
-                    className={`fixed right-4 bottom-4 z-50 rounded-full p-3 shadow-lg text-white ${isPlaying ? 'bg-primary' : 'bg-primary/60'}`}>
+                    className={`fixed right-4 bottom-4 z-50 rounded-full p-3 shadow-lg text-white ${isPlaying ? 'bg-[#CC3947]' : 'bg-[#CC3947]/60'}`}>
                     <Disc3 size={20} />
                 </motion.button>
             )}
