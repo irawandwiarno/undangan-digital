@@ -13,8 +13,8 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/sutji-windi" element={<SutjiPage />} />
-        <Route path="/windi-sutji" element={<Windi />} />
+        <Route path="/sutji-windy" element={<SutjiPage />} />
+        <Route path="/windy-sutji" element={<Windi />} />
         <Route path="/dino-helen" element={<Dino />} />
         <Route path="/gen/:slug" element={<GuestLinkGenerator />} />
       </Routes>
