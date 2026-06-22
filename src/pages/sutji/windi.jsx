@@ -64,7 +64,7 @@ export default function Windi() {
     useEffect(() => {
         // Prepare audio player — place your music file at public/music.mp3
         try {
-            audioRef.current = new Audio('beautiful-in-white.mp3')
+            audioRef.current = new Audio('beautiful-in-white-music.mp3')
             audioRef.current.loop = true
         } catch (e) {
             console.warn('Audio not available', e)
