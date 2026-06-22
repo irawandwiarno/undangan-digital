@@ -380,7 +380,7 @@ export default function Windi() {
                             className='text-2xl md:text-3xl text-primary mt-6 font-more-sugar text-center'>
                             Sabtu
                         </motion.p>
-                        <CalendarRow value={[1, 2, 3, 4, 5, 6, 7]} />
+                        <CalendarRow value={[1, 2, 3, 4, 5, 6, 7]} isWindi={true}/>
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}

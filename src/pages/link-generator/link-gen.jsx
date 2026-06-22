@@ -19,18 +19,20 @@ export default function GuestLinkGenerator() {
     const message = (() => {
         if (!link) return ''
         if (caption.includes('{{link}}')) return caption.replace(/\{\{link\}\}/g, link)
+        if (caption.includes('{{name}}')) return caption.replace(/\{\{name\}\}/g, guest)
         return caption ? `${caption}\n\n${link}` : link
     })()
 
-    function insertPlaceholder() {
+    function insertPlaceholder(text) {
         const ta = captionRef.current
         if (!ta) return
         const start = ta.selectionStart
         const end = ta.selectionEnd
-        const next = caption.slice(0, start) + '{{link}}' + caption.slice(end)
+        const next = caption.slice(0, start) + text + caption.slice(end)
         setCaption(next)
         setTimeout(() => {
-            ta.selectionStart = ta.selectionEnd = start + 9
+            // ✅ pakai text.length bukan hardcode 9
+            ta.selectionStart = ta.selectionEnd = start + text.length
             ta.focus()
         }, 0)
     }
@@ -95,12 +97,21 @@ export default function GuestLinkGenerator() {
                 <div className="space-y-1.5">
                     <div className="flex justify-between items-center">
                         <label className="text-xs text-black">Caption</label>
-                        <button
-                            onClick={insertPlaceholder}
-                            className="text-xs text-black border border-gray-200 rounded-md px-2 py-1 hover:bg-gray-50 hover:text-gray-600 transition-colors"
-                        >
-                            + sisipkan {'{{link}}'}
-                        </button>
+                        <div className='flex justify-center items-center'>
+                            <button
+                                onClick={() => insertPlaceholder('{{name}}')}
+                                className="text-xs text-black border border-gray-200 rounded-md px-2 py-1 hover:bg-gray-50 hover:text-gray-600 transition-colors"
+                            >
+                                + sisipkan {'{{name}}'}
+                            </button>
+                            <button
+                                onClick={() => insertPlaceholder('{{link}}')}
+                                className="text-xs text-black border border-gray-200 rounded-md px-2 py-1 hover:bg-gray-50 hover:text-gray-600 transition-colors"
+                            >
+                                + sisipkan {'{{link}}'}
+                            </button>
+                        </div>
+
                     </div>
                     <textarea
                         ref={captionRef}

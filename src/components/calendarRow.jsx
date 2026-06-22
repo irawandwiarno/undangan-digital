@@ -2,13 +2,15 @@ import dateMark from '@assets/images/sutji/undangan/date-mark.webp';
 import { motion } from 'framer-motion';
 
 
-export default function CalendarRow({ value }) {
+export default function CalendarRow({ value, isWindi }) {
+    const indexDate = isWindi ? 3 : 2;
+
     return (
         <div className="w-4/5 mt-4 mx-auto">
             <div className="flex justify-between items-center">
                 {value?.map((item, index) => (
                     <div key={index} className="flex items-center">
-                        <DateBox value={item} index={index} overlay={index === 3 ? dateMark : undefined} />
+                        <DateBox value={item} index={index} overlay={index === indexDate ? dateMark : undefined} />
                     </div>
                 ))}
             </div>
