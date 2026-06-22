@@ -401,7 +401,7 @@ export default function Windi() {
                             viewport={{ once: true, amount: 1 }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
                         >
-                            Bride & Groom
+                            Groom & Bride
                         </motion.span>
                     </h1>
                     <div className="">
