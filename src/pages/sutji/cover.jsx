@@ -2,7 +2,8 @@ import frameImg from '@assets/images/sutji/cover/frame.webp';
 import yai from '@assets/images/sutji/cover/yai.webp';
 import couple from '@assets/images/sutji/cover/pasangan.webp';
 
-export default function Cover({ isOpen = false, tamu = '', onOpen = () => { } }) {
+export default function Cover({ isOpen = false, tamu = '', onOpen = () => { }, isWindi }) {
+
     return (
         <main className="w-screen h-dvh md:h-screen overflow-hidden bg-white flex items-center justify-center">
             <div className='relative w-full md:max-w-sm bg-white'>
@@ -17,7 +18,7 @@ export default function Cover({ isOpen = false, tamu = '', onOpen = () => { } })
                             <img src={couple} alt="couple" className='w-7/12 my-3 mr-7 h-auto object-contain object-center' />
                         </div>
                         <h1 className='text-4xl text-center text-primary font-pacific-northwest'>
-                            Sutji & Windy
+                           {isWindi ? "Windy & Sutji" : "Sutji & Windy"}
                         </h1>
                         <p className='text-xs font-bold mt-1 text-center text-primary font-glacial-indifference'>
                             we invite you to celebrate our wedding

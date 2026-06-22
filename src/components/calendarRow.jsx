@@ -8,7 +8,7 @@ export default function CalendarRow({ value }) {
             <div className="flex justify-between items-center">
                 {value?.map((item, index) => (
                     <div key={index} className="flex items-center">
-                        <DateBox value={item} index={index} overlay={index === 2 ? dateMark : undefined} />
+                        <DateBox value={item} index={index} overlay={index === 3 ? dateMark : undefined} />
                     </div>
                 ))}
             </div>

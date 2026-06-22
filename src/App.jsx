@@ -5,6 +5,7 @@ import HomePage from './pages/home/home'
 import SutjiPage from './pages/sutji/sutji'
 import Dino from './pages/dino/dino'
 import GuestLinkGenerator from './pages/link-generator/link-gen'
+import Windi from './pages/sutji/windi'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/sutji" element={<SutjiPage />} />
+        <Route path="/sutji-windi" element={<SutjiPage />} />
+        <Route path="/windi-sutji" element={<Windi />} />
         <Route path="/dino-helen" element={<Dino />} />
         <Route path="/gen/:slug" element={<GuestLinkGenerator />} />
       </Routes>

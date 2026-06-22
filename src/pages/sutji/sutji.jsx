@@ -12,20 +12,21 @@ import { cleanProfanity } from '@/utils/badWordFilter';
 
 
 import std from '@assets/images/sutji/undangan/save-date.webp';
-import flowerLeftTop from '@assets/images/sutji/undangan/top-l-flower.webp';
-import flowerRightTop from '@assets/images/sutji/undangan/top-r-flower.webp';
+import heroImg from '@assets/images/sutji/undangan/hero-img.webp';
 import blueFlower from '@assets/images/sutji/undangan/blue-flower.webp';
-import hero from '@assets/images/sutji/undangan/hero.webp';
 import frameDoa from '@assets/images/sutji/undangan/frameDoa.webp';
 import bismila from '@assets/images/sutji/undangan/bismila.webp';
 import qs from '@assets/images/sutji/undangan/qs.webp';
-import bride from '@assets/images/sutji/undangan/bride.webp';
+import frame from '@assets/images/sutji/undangan/frame.webp';
+import bridePhoto from '@assets/images/sutji/undangan/bridePhoto.webp';
+import gromPhoto from '@assets/images/sutji/undangan/gromPhoto.webp';
 import ig from '@assets/images/sutji/undangan/ig.webp';
 import janji from '@assets/images/sutji/undangan/janji.webp';
 import pitaLove from '@assets/images/sutji/undangan/pita-love.webp';
 import balon from '@assets/images/sutji/undangan/balon.webp';
 import ring from '@assets/images/sutji/undangan/ring.webp';
 import pitaRed from '@assets/images/sutji/undangan/pita-red.webp';
+import pitaRedSingle from '@assets/images/sutji/undangan/pita-red-sigle.webp';
 import calendarLove from '@assets/images/sutji/undangan/calendar-love.webp';
 import mapPin from '@assets/images/sutji/undangan/map-pin.webp';
 import um from '@assets/images/sutji/undangan/um.webp';
@@ -39,6 +40,9 @@ import gpay from '@assets/images/sutji/undangan/gpay.webp';
 import dana from '@assets/images/sutji/undangan/dana.webp';
 import kado from '@assets/images/sutji/undangan/kado.webp';
 import kue from '@assets/images/sutji/undangan/kue.webp';
+import kupu from '@assets/images/sutji/undangan/kupu.webp';
+import wave from '@assets/images/sutji/undangan/wave.webp';
+import three from '@assets/images/sutji/undangan/3.webp';
 
 
 export default function Sutji() {
@@ -72,23 +76,24 @@ export default function Sutji() {
         const guestName = params.get('g')?.trim()
         if (guestName) {
             setTamu(guestName)
+            setName(guestName)
         }
     }, [])
 
     const sendWebhook = useCallback(async function trackVisitor(guestName) {
-            const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
-                method: "POST",
-                mode: "no-cors", 
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: guestName,
-                    date: new Date().toISOString(),
-                }),
-            });
+        const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: guestName,
+                date: new Date().toISOString(),
+            }),
+        });
 
-            console.log(res);
-            
-        }, [tamu]);
+        console.log(res);
+
+    }, [tamu]);
 
     const cleanedMessages = useMemo(() =>
         messages.map(m => ({
@@ -220,9 +225,9 @@ export default function Sutji() {
             {isOpen && (<main className='relative w-full md:max-w-sm overflow-y-auto overflow-x-hidden'>
                 <section className='relative min-h-screen overflow-hidden pt-20'>
                     {/* Bunga Kiri Atas */}
-                    <div className="absolute top-0 left-0 -translate-x-4/8 -translate-y-1/8">
+                    <div className="absolute top-0 left-0 -translate-x-4/8 -translate-y-1/8 -scale-y-100">
                         <motion.img
-                            src={flowerLeftTop}
+                            src={blueFlower}
                             alt="Flower"
                             className='w-40 h-auto'
                             style={{ originX: 0.5, originY: 1 }}
@@ -237,11 +242,11 @@ export default function Sutji() {
                     </div>
 
                     {/* Bunga Kanan Atas */}
-                    <div className="absolute top-0 right-0 translate-x-4/8 md:translate-x-3/8 -translate-y-1/2">
+                    <div className="absolute top-0 right-0 translate-x-20 md:translate-x-3/8 -translate-y-1/8 -scale-y-100 -scale-x-100">
                         <motion.img
-                            src={flowerRightTop}
+                            src={blueFlower}
                             alt="Flower"
-                            className='w-34 h-auto'
+                            className='w-40 h-auto'
                             style={{ originX: 0.5, originY: 1 }}
                             animate={{ rotate: [0, 4, -3, 1.5, 0] }}
                             transition={{
@@ -267,7 +272,7 @@ export default function Sutji() {
                             />
 
                             <p
-                                className="mt-1 text-center font-authenia text-4xl text-secondary/80"
+                                className="mt-1 text-center font-authenia text-4xl text-secondary"
                             >
                                 The wedding of
                             </p>
@@ -276,9 +281,9 @@ export default function Sutji() {
                             initial={{ opacity: 0, y: 0, }}
                             animate={{ opacity: 1, y: 0, }}
                             transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
-                            src={hero}
-                            alt="Hero"
-                            className='w-72 md:w-80 h-auto'
+                            src={heroImg}
+                            className='w-[90%]'
+
                         />
                         <motion.div
                             initial={{ opacity: 0, y: 60, }}
@@ -286,17 +291,17 @@ export default function Sutji() {
                             transition={{ duration: 1.2, ease: 'easeOut', delay: 0.6 }}
                             className="flex flex-col items-center"
                         >
-                            <p className='text-5xl text-primary mt-2 font-authenia text-center'>
+                            <p className='text-4xl text-primary mt-2 font-pacific-northwest text-center'>
                                 Sutji & Windy
                             </p>
-                            <p className='text-lg font-bold text-primary mt-4 font-glacial-indifference text-center'>
+                            <p className='text-base font-bold text-primary font-glacial-indifference text-center'>
                                 Jum’at, 03 Juli 2026
                             </p>
                         </motion.div>
 
                     </div>
                 </section>
-                <section className='relative md:mt-40 min-h-screen overflow-visible'>
+                <section className='relative md:mt-40 min-h-205 overflow-visible'>
                     {/* Bunga Kiri */}
                     <div className="absolute top-0 left-0 -translate-x-2/4 -translate-y-5/6">
                         <motion.img
@@ -331,7 +336,15 @@ export default function Sutji() {
                             }}
                         />
                     </div>
-                    <div className="w-7/8 mx-auto">
+                    <div className="relative w-7/8 mx-auto">
+                        <div className="absolute bottom-0 -translate-y-50 ">
+                            <motion.img 
+                            initial={{ opacity: 0, y: 60, }}
+                            whileInView={{ opacity: 1, y: 0, }}
+                            viewport={{ once: true, amount: 0.3, }}
+                            transition={{ duration: 1.2, ease: 'easeOut' }}
+                            src={kupu} alt="" className='w-15' />
+                        </div>
                         <ImageContainer image={frameDoa} className='-mt-10'>
                             <div className="text-center w-7/9 space-y-4 flex flex-col items-center">
                                 <img src={bismila} alt="Bismillah" className='w-3/5' />
@@ -343,12 +356,13 @@ export default function Sutji() {
 
                             </div>
                         </ImageContainer>
+
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}
                             viewport={{ once: true, amount: 0.3, }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
-                            className='text-4xl md:text-5xl text-primary mt-2 font-authenia text-center'>
+                            className='text-4xl md:text-5xl text-primary my-10 font-authenia text-center'>
                             Counting Days
                         </motion.p>
 
@@ -358,7 +372,7 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, y: 0, }}
                             viewport={{ once: true, amount: 0.3, }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
-                            className='text-2xl md:text-3xl text-gray-500 mt-6 font-more-sugar text-center'>
+                            className='text-2xl md:text-3xl text-primary mt-6 font-more-sugar text-center'>
                             Jum’at
                         </motion.p>
                         <CalendarRow value={[1, 2, 3, 4, 5, 6, 7]} />
@@ -367,14 +381,14 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, y: 0, }}
                             viewport={{ once: true, amount: 0.1, }}
                             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 * 4 }}
-                            className='text-2xl md:text-3xl text-gray-500 mt-1 font-more-sugar text-center'>
+                            className='text-2xl md:text-3xl text-primary mt-1 font-more-sugar text-center'>
                             Juli 2026
                         </motion.p>
 
                     </div>
                 </section>
                 <section className='relative min-h-screen overflow-visible'>
-                    <h1 className='flex justify-center text-5xl text-white bg-secondary pt-3 font-authenia'>
+                    <h1 className='absolute w-full flex justify-center text-5xl text-white bg-secondary pt-3 font-authenia'>
                         <motion.span
                             initial={{ opacity: 0, }}
                             whileInView={{ opacity: 1, }}
@@ -385,9 +399,9 @@ export default function Sutji() {
                         </motion.span>
                     </h1>
                     <div className="">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#6068af" fill-opacity="1" d="M0,160L26.7,138.7C53.3,117,107,75,160,64C213.3,53,267,75,320,101.3C373.3,128,427,160,480,149.3C533.3,139,587,85,640,69.3C693.3,53,747,75,800,101.3C853.3,128,907,160,960,144C1013.3,128,1067,64,1120,48C1173.3,32,1227,64,1280,96C1333.3,128,1387,160,1413,176L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
+                        <img src={wave} alt="" className='pt-5' />
                     </div>
-                    <div className='flex flex-col items-center -mt-4 font-glacial-indifference'>
+                    <div className='flex flex-col items-center mt-4 font-glacial-indifference'>
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}
@@ -409,17 +423,22 @@ export default function Sutji() {
                         whileInView={{ opacity: 1, }}
                         viewport={{ once: true, amount: 0.8, }}
                         transition={{ duration: 2, ease: 'easeOut' }}
-                        className='mt-2 flex flex-col items-center'
+                        className='mt-6 flex flex-col items-center'
                     >
-                        <img src={bride} alt="Bride" />
+                        <div className="relative w-full h-60 flex items-center justify-center">
+                            {/* Gambar background / frame — di belakang */}
+                            <img src={bridePhoto} alt="Bride" className="relative w-31.5 translate-y-0.5" />
+                            <img src={frame} alt="Bride" className="absolute w-full h-full object-contain" />
+                            {/* Foto — di depan, tengah */}
+                        </div>
                         <p className='text-center text-lg text-primary font-pacific-northwest mt-2'>Sutji Rahayu Rahma Maulidah, S.Pd., Gr.</p>
                         <p className='text-center text-[10px] font-bold text-primary font-glacial-indifference mt-1'>Anak pertama dari Bapak Sutaji, S.Pd. dan Ibu Budi Rahayu</p>
-                        <div className="flex justify-center mt-2 bg-secondary px-5 py-2 rounded-full">
+                        <div className="flex justify-center mt-2 bg-secondary px-5 py-2 rounded-full gap-1">
                             <img src={ig} alt="Instagram" className='w-5 h-auto' />
                             <a
                                 href="https://www.instagram.com/stjrhy_"
                                 target="_blank" rel="noopener noreferrer"
-                                className='text-center text-xs text-white font-glacial-indifference ml-1'>
+                                className='text-center text-xs text-white font-glacial-indifference'>
                                 @stjrhy_
                             </a>
                         </div>
@@ -429,7 +448,7 @@ export default function Sutji() {
                         whileInView={{ opacity: 1, }}
                         viewport={{ once: true, amount: 0.8, }}
                         transition={{ duration: 2, ease: 'easeOut' }}
-                        src={janji} alt="Janji" className='w-2/6 h-auto mx-auto my-10'
+                        src={janji} alt="Janji" className='w-2/6 h-auto mx-auto mt-15 mb-10'
                     />
                     <motion.div
                         initial={{ opacity: 0, }}
@@ -438,7 +457,12 @@ export default function Sutji() {
                         transition={{ duration: 2, ease: 'easeOut' }}
                         className='mt-2 flex flex-col items-center'
                     >
-                        <img src={bride} alt="Bride" />
+                        <div className="relative w-full h-60 flex items-center justify-center">
+                            {/* Gambar background / frame — di belakang */}
+                            <img src={gromPhoto} alt="Bride" className="relative w-31.5 translate-y-0.5" />
+                            <img src={frame} alt="Frame" className="absolute w-full h-full object-contain" />
+                            {/* Foto — di depan, tengah */}
+                        </div>
                         <p className='text-center text-lg text-primary font-pacific-northwest mt-2'>Windy Setyadi, S.E.</p>
                         <p className='text-center text-[10px] font-bold text-primary font-glacial-indifference mt-1'>Anak kedua dari Bapak Suwantah dan Ibu Parmi Juliati</p>
                         <div className="flex justify-center mt-2 bg-secondary px-5 py-2 rounded-full">
@@ -452,15 +476,15 @@ export default function Sutji() {
                         </div>
                     </motion.div>
                 </section>
-                <section className='relative min-h-screen overflow-visible mt-8'>
-                    <div className="absolute top-30 left-0">
+                <section className='relative min-h-screen overflow-visible mt-10'>
+                    <div className="absolute top-40 -left-3">
                         <img src={balon} alt="balon" className='w-20 h-auto' />
                     </div>
-                    <div className="absolute top-8/18 right-0">
-                        <img src={ring} alt="Ring" className='w-20 h-auto' />
+                    <div className="absolute top-8/18 -right-2">
+                        <img src={ring} alt="Ring" className='w-15 h-auto' />
                     </div>
                     <img src={pitaLove} alt="pita love" className='mx-auto' />
-                    <div className="flex flex-col items-center mt-2">
+                    <div className="flex flex-col items-center mt-5">
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}
@@ -482,13 +506,11 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, }}
                             viewport={{ once: true, amount: 1, }}
                             transition={{ duration: 1.2, ease: 'easeOut', delay: 0.7 }}
-                            className="flex justify-center items-center gap-3">
+                            className="flex justify-center items-center gap-3 mt-2">
                             <p className='text-3xl md:text-3xl text-primary font-pacific-northwest text-center'>
                                 Juli
                             </p>
-                            <p className='text-6xl md:text-7xl text-primary/50 font-more-sugar text-center'>
-                                3
-                            </p>
+                            <img src={three} alt="" className='w-10' />
                             <p className='text-3xl md:text-3xl text-primary font-pacific-northwest text-center'>
                                 2026
                             </p>
@@ -531,7 +553,7 @@ export default function Sutji() {
                                     </p>
 
                                     <p className="text-end font-glacial-indifference text-xs font-bold text-primary">
-                                        08.00 - 09.00 WIB
+                                        09.00 - 10.00 WIB
                                     </p>
                                 </motion.div>
 
@@ -614,7 +636,7 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, }}
                             viewport={{ once: true, amount: 0.5, }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
-                            className="px-8 py-2 rounded-full mt-5 text-primary/80 font-authenia text-5xl cursor-pointer hover:bg-secondary/90 transition-colors">
+                            className="px-8 py-2 rounded-full mt-10 text-primary font-pacific-northwest text-4xl cursor-pointer hover:bg-secondary/90 transition-colors">
                             Maps
                         </motion.div>
 
@@ -635,7 +657,7 @@ export default function Sutji() {
                                 'https://maps.app.goo.gl/bvufY5yEjv4M1kXT9',
                                 '_blank'
                             )}
-                            className="flex justify-center bg-secondary w-2/3 py-2 rounded-full my-5 text-white font-glacial-indifference text-lg font-bold cursor-pointer hover:bg-secondary/90 transition-colors">
+                            className="flex justify-center bg-secondary w-2/3 py-2 rounded-full my-10 text-white font-glacial-indifference text-lg font-bold cursor-pointer hover:bg-secondary/90 transition-colors">
                             Buka di google map
                         </motion.button>
 
@@ -647,7 +669,7 @@ export default function Sutji() {
                             className="text-center text-xs w-7/8 leading-4 font-glacial-indifference text-primary/80">
                             Kedatangan Anda fleksibel di sepanjang resepsi. Kami sangat menantikan kehadiran Anda di jam berapa pun untuk berbagi kebahagiaan.
                         </motion.p>
-                        <img src={pitaLove} alt="pita love" className='mx-auto my-5' />
+                        <img src={pitaLove} alt="pita love" className='mx-auto my-10' />
                     </div>
                 </section>
                 <section className='relative min-h-screen overflow-visible'>
@@ -767,16 +789,48 @@ export default function Sutji() {
                             </div>
                         </motion.div>
                     </div>
-                    <img src={pitaLove} alt="pita love" className='mx-auto my-5' />
                 </section>
-                <section className='relative min-h-screen overflow-visible'>
+                <section className='relative min-h-screen overflow-visible mt-10'>
+                    <div className="absolute top-0 left-0 -translate-x-4/8 -translate-y-1/8 -scale-y-100">
+                        <motion.img
+                            src={blueFlower}
+                            alt="Flower"
+                            className='w-40 h-auto'
+                            style={{ originX: 0.5, originY: 1 }}
+                            animate={{ rotate: [0, -5, 3, -1.5, 0] }}
+                            transition={{
+                                duration: 4.2,
+                                repeat: Infinity,
+                                ease: [0.45, 0.05, 0.55, 0.95],
+                                times: [0, 0.3, 0.6, 0.8, 1]
+                            }}
+                        />
+                    </div>
+
+                    {/* Bunga Kanan Atas */}
+                    <div className="absolute top-0 right-0 translate-x-20 md:translate-x-3/8 -translate-y-1/8 -scale-y-100 -scale-x-100">
+                        <motion.img
+                            src={blueFlower}
+                            alt="Flower"
+                            className='w-40 h-auto'
+                            style={{ originX: 0.5, originY: 1 }}
+                            animate={{ rotate: [0, 4, -3, 1.5, 0] }}
+                            transition={{
+                                duration: 4.8,
+                                repeat: Infinity,
+                                ease: [0.45, 0.05, 0.55, 0.95],
+                                times: [0, 0.25, 0.55, 0.75, 1],
+                                delay: 0.8
+                            }}
+                        />
+                    </div>
                     <div className="flex flex-col items-center">
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}
                             viewport={{ once: true, amount: 0.5, }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
-                            className='text-5xl md:text-6xl text-primary my-5 font-authenia text-center'>
+                            className='text-5xl md:text-6xl text-primary mb-10 mt-5 font-authenia text-center'>
                             Potrait of Us
                         </motion.p>
                         <motion.img
@@ -793,12 +847,12 @@ export default function Sutji() {
                             className='text-sm text-gray-600 font-glacial-indifference text-center mt-10'>
                             "To have and to hold, from this day forward."
                         </motion.p>
-                        <img src={pitaLove} alt="pita love" className='mx-auto my-5' />
                     </div>
                 </section>
                 <section className='relative min-h-screen overflow-visible'>
-                    <div className="absolute bottom-0 left-0 -translate-x-1/12 -translate-y-9/6">
-                        <img src={kue} alt="Kue" className='w-3/8' />
+                    <img src={pitaLove} alt="pita love" className='mx-auto my-5' />
+                    <div className="absolute bottom-45 -left-5">
+                        <img src={kue} alt="Kue" className='w-20' />
                     </div>
                     <div className="flex flex-col items-center">
                         <motion.p
@@ -823,16 +877,16 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, }}
                             viewport={{ once: true, amount: 0.5, }}
                             transition={{ duration: 2, ease: 'easeOut' }}
-                            className='flex flex-col items-center'
+                            className='flex flex-col items-center mb-5'
                         >
                             <img src={bri} alt="BRI" className='w-1/5 h-auto my-5' />
-                            <p className='text-center font-bold text-sm text-primary font-glacial-indifference'>
-                                03072 6070 6011 10999 <br />
+                            <p className='text-center text-sm text-primary font-glacial-indifference'>
+                                6245 0101 6951 538 <br />
                                 a/n Sutji Rahayu Rahma Maulidah
                             </p>
                             <button
                                 onClick={async () => {
-                                    await copyToClipboard('030726070601110999');
+                                    await copyToClipboard('624501016951538');
                                     toast.success('Tercopy ke clipboard!');
                                 }}
                                 className="my-3 px-4 py-1 bg-secondary text-white rounded-full text-sm font-bold font-glacial-indifference hover:bg-secondary/90 transition-colors"
@@ -845,14 +899,14 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, }}
                             viewport={{ once: true, amount: 0.5, }}
                             transition={{ duration: 2, ease: 'easeOut' }}
-                            className='flex flex-col items-center'
+                            className='flex flex-col items-center mb-5'
                         >
                             <div className="flex justify-center items-center gap-3">
                                 <img src={dana} alt="Dana" className='w-1/5 h-auto my-5' />
                                 <img src={spay} alt="SPay" className='w-1/5 h-auto my-5' />
                                 <img src={gpay} alt="GPay" className='w-1/5 h-auto my-5' />
                             </div>
-                            <p className='text-center font-bold text-sm text-primary font-glacial-indifference'>
+                            <p className='text-center text-sm text-primary font-glacial-indifference'>
                                 0895 3217 59712 <br />
                                 a/n Sutji Rahayu Rahma Maulidah
                             </p>
@@ -877,8 +931,8 @@ export default function Sutji() {
                                 Kirim Kado
                             </p>
                             <img src={kado} alt="Kado" className='w-1/5 h-auto my-3' />
-                            <p className='text-center w-4/5 font-bold text-sm text-primary font-glacial-indifference'>
-                                Dsn. Tanjung RT/RW 023/004 Ds. Ngusikan Kec. Ngusikan Kab. Jombang Jawa Timur. Kode pos 61486
+                            <p className='text-center w-4/5 text-sm text-primary font-glacial-indifference'>
+                                Dsn. Tanjung RT/RW 023/004 Ds. Ngusikan Kec. Ngusikan Kab. Jombang Jawa Timur. <br /> Kode pos 61486
                             </p>
                             <button
                                 onClick={async () => {
@@ -890,6 +944,8 @@ export default function Sutji() {
                                 Copy Alamat
                             </button>
                         </motion.div>
+
+                        <img src={pitaLove} alt="pita love" className='mx-auto my-5' />
 
                         <p className='text-center font-glacial-indifference text-xs mt-5 w-6/7'>
                             Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kami. Atas kehadiran dan doa restunya kami ucapkan terimakasih. <br /><br />Wassalamualaikum Wr. Wb.
@@ -903,15 +959,18 @@ export default function Sutji() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.5 }}
                             transition={{ duration: 1.2, ease: 'easeOut' }}
-                            className='text-4xl md:text-5xl text-primary mt-3 font-authenia text-center'>
-                            Ucapan dan Doa
+                            className='text-5xl md:text-5xl text-primary mt-3 font-pacific-northwest text-center'>
+                            Sutji & Windy
                         </motion.p>
+                        <img src={pitaRedSingle} alt="pita Red" className='mx-auto w-1/2' />
 
-                        <div className='w-full max-w-md mt-6'>
+                        <div className='w-full max-w-md mt-10'>
                             <form
                                 onSubmit={async (e) => handleSubmit(e)}
                                 className='bg-white border-2 border-primary/90 rounded-3xl p-6 space-y-4'
                             >
+                                <p className='text-4xl md:text-5xl text-primary font-authenia text-center'> Ucapan dan Doa</p>
+
                                 <div>
                                     <input
                                         value={name}
