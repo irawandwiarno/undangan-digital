@@ -7,7 +7,7 @@ import Cover from './cover'
 import Countdown from '@/components/countdown';
 import CalendarRow from '@/components/calendarRow';
 import toast from 'react-hot-toast';
-import { createGuest, fetchGuests } from '@/utils/supabase';
+import { createGuest, fetchClientBySlug, fetchGuests } from '@/utils/supabase';
 import { cleanProfanity } from '@/utils/badWordFilter';
 
 
@@ -48,7 +48,8 @@ import four from '@assets/images/sutji/undangan/4.webp';
 
 export default function Windi() {
     const isWindi = true;
-
+    const SLUG = 'windy-sutji'
+    const [client, setClient] = useState()
     const [isOpen, setIsOpen] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [showMap, setShowMap] = useState(false)
@@ -84,6 +85,12 @@ export default function Windi() {
         }
     }, [])
 
+    const getClientData = useCallback(async () => {
+
+        const res = await fetchClientBySlug(SLUG);
+        setClient(res);
+    }, []);
+
     const sendWebhook = useCallback(async function trackVisitor(guestName) {
         const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
             method: "POST",
@@ -94,9 +101,6 @@ export default function Windi() {
                 date: new Date().toISOString(),
             }),
         });
-
-        console.log(res);
-
     }, [tamu]);
 
     const cleanedMessages = useMemo(() =>
@@ -109,17 +113,22 @@ export default function Windi() {
     )
 
     const loadMessages = useCallback(async () => {
+        if(!client) return;
         try {
-            const data = await fetchGuests()
+            const data = await fetchGuests(client?.id)
             setMessages(data ?? [])
         } catch (error) {
             console.error('Fetch guest messages failed', error)
             // toast.error('Gagal memuat ucapan dari Supabase')
         }
-    }, []);
+    }, [client]);
 
     useEffect(() => {
         loadMessages()
+    }, [client])
+
+    useEffect(() => {
+        getClientData();
     }, [])
 
     async function handleSubmit(e) {
@@ -129,39 +138,30 @@ export default function Windi() {
             return
         }
 
-        if (attendance !== 'Hadir' && attendance !== 'Tidak hadir') {
-            toast.error('Silakan pilih Hadir atau Tidak hadir')
-            return
-        }
-
         setSubmitting(true)
         try {
             const createdRows = await createGuest({
-                name: name.trim(),
+                name: name.trim(),       // ← trim di sini konsisten
                 message: message.trim(),
-                attendance
+                attendance: 'Hadir',
+                client_id: client.id,
             })
 
-            const created = createdRows?.[0] ?? {
-                name: name.trim(),
-                message: message.trim(),
-                attendance
-            }
+            const created = createdRows?.[0]
 
             setMessages((prev) => [
                 {
                     id: created?.id ?? Date.now(),
-                    name: created?.name ?? name,
-                    message: created?.message ?? message,
-                    attendance: created?.attendance ?? attendance
+                    name: created?.name ?? name.trim(),
+                    message: created?.message ?? message.trim(),
+                    attendance: 'Hadir',   // ← hardcode saja, tidak dari state
                 },
                 ...prev
             ])
 
             setName('')
             setMessage('')
-            setAttendance('')
-            toast.success('Ucapan berhasil dikirim')
+            // toast.success('Ucapan berhasil dikirim')
         } catch (error) {
             console.error('Submit guest failed', error)
             toast.error('Gagal mengirim ucapan, coba lagi')
@@ -380,7 +380,7 @@ export default function Windi() {
                             className='text-2xl md:text-3xl text-primary mt-6 font-more-sugar text-center'>
                             Sabtu
                         </motion.p>
-                        <CalendarRow value={[1, 2, 3, 4, 5, 6, 7]} isWindi={true}/>
+                        <CalendarRow value={[1, 2, 3, 4, 5, 6, 7]} isWindi={true} />
                         <motion.p
                             initial={{ opacity: 0, y: 60, }}
                             whileInView={{ opacity: 1, y: 0, }}

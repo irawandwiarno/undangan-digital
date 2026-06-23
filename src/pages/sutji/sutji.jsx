@@ -7,7 +7,7 @@ import Cover from './cover'
 import Countdown from '@/components/countdown';
 import CalendarRow from '@/components/calendarRow';
 import toast from 'react-hot-toast';
-import { createGuest, fetchGuests } from '@/utils/supabase';
+import { createGuest, fetchClientBySlug, fetchGuests } from '@/utils/supabase';
 import { cleanProfanity } from '@/utils/badWordFilter';
 
 
@@ -46,6 +46,8 @@ import three from '@assets/images/sutji/undangan/3.webp';
 
 
 export default function Sutji() {
+    const SLUG = 'sutji-windy'
+    const [client, setClient] = useState()
     const [isOpen, setIsOpen] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [showMap, setShowMap] = useState(false)
@@ -80,6 +82,12 @@ export default function Sutji() {
         }
     }, [])
 
+    const getClientData = useCallback(async () => {
+
+        const res = await fetchClientBySlug(SLUG);
+        setClient(res);
+    }, []);
+
     const sendWebhook = useCallback(async function trackVisitor(guestName) {
         const res = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
             method: "POST",
@@ -90,9 +98,6 @@ export default function Sutji() {
                 date: new Date().toISOString(),
             }),
         });
-
-        console.log(res);
-
     }, [tamu]);
 
     const cleanedMessages = useMemo(() =>
@@ -104,19 +109,30 @@ export default function Sutji() {
         [messages] // hanya recompute kalau messages berubah
     )
 
+
     const loadMessages = useCallback(async () => {
+        if(!client) return;
+
         try {
-            const data = await fetchGuests()
+            const data = await fetchGuests(client?.id)
             setMessages(data ?? [])
         } catch (error) {
             console.error('Fetch guest messages failed', error)
             // toast.error('Gagal memuat ucapan dari Supabase')
         }
-    }, []);
+    }, [client]);
 
     useEffect(() => {
         loadMessages()
     }, [])
+
+    useEffect(() => {
+        getClientData();
+    }, [])
+
+    useEffect(() => {
+        loadMessages();
+    }, [client])
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -125,39 +141,30 @@ export default function Sutji() {
             return
         }
 
-        if (attendance !== 'Hadir' && attendance !== 'Tidak hadir') {
-            toast.error('Silakan pilih Hadir atau Tidak hadir')
-            return
-        }
-
         setSubmitting(true)
         try {
             const createdRows = await createGuest({
-                name: name.trim(),
+                name: name.trim(),       // ← trim di sini konsisten
                 message: message.trim(),
-                attendance
+                attendance: 'Hadir',
+                client_id: client.id,
             })
 
-            const created = createdRows?.[0] ?? {
-                name: name.trim(),
-                message: message.trim(),
-                attendance
-            }
+            const created = createdRows?.[0]
 
             setMessages((prev) => [
                 {
                     id: created?.id ?? Date.now(),
-                    name: created?.name ?? name,
-                    message: created?.message ?? message,
-                    attendance: created?.attendance ?? attendance
+                    name: created?.name ?? name.trim(),
+                    message: created?.message ?? message.trim(),
+                    attendance: 'Hadir',   // ← hardcode saja, tidak dari state
                 },
                 ...prev
             ])
 
             setName('')
             setMessage('')
-            setAttendance('')
-            toast.success('Ucapan berhasil dikirim')
+            // toast.success('Ucapan berhasil dikirim')
         } catch (error) {
             console.error('Submit guest failed', error)
             toast.error('Gagal mengirim ucapan, coba lagi')
@@ -338,12 +345,12 @@ export default function Sutji() {
                     </div>
                     <div className="relative w-7/8 mx-auto">
                         <div className="absolute bottom-0 -translate-y-50 ">
-                            <motion.img 
-                            initial={{ opacity: 0, y: 60, }}
-                            whileInView={{ opacity: 1, y: 0, }}
-                            viewport={{ once: true, amount: 0.3, }}
-                            transition={{ duration: 1.2, ease: 'easeOut' }}
-                            src={kupu} alt="" className='w-15' />
+                            <motion.img
+                                initial={{ opacity: 0, y: 60, }}
+                                whileInView={{ opacity: 1, y: 0, }}
+                                viewport={{ once: true, amount: 0.3, }}
+                                transition={{ duration: 1.2, ease: 'easeOut' }}
+                                src={kupu} alt="" className='w-15' />
                         </div>
                         <ImageContainer image={frameDoa} className='-mt-10'>
                             <div className="text-center w-7/9 space-y-4 flex flex-col items-center">
