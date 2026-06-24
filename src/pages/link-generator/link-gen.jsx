@@ -18,9 +18,17 @@ export default function GuestLinkGenerator() {
 
     const message = (() => {
         if (!link) return ''
-        if (caption.includes('{{link}}')) return caption.replace(/\{\{link\}\}/g, link)
-        if (caption.includes('{{name}}')) return caption.replace(/\{\{name\}\}/g, guest)
-        return caption ? `${caption}\n\n${link}` : link
+
+        let result = caption
+            .replace(/\{\{link\}\}/g, link)
+            .replace(/\{\{name\}\}/g, guest)
+
+        // Kalau caption tidak mengandung {{link}}, tambahkan link di bawah
+        if (!caption.includes('{{link}}')) {
+            result = result ? `${result}\n\n${link}` : link
+        }
+
+        return result
     })()
 
     function insertPlaceholder(text) {
