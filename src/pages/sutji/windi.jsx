@@ -633,7 +633,7 @@ export default function Windi() {
                                     transition={{ duration: 1.2, ease: 'easeOut', delay: 1 }}
                                 >
                                     <p className="text-start font-glacial-indifference text-[10px] text-primary">
-                                        Kediaman Mempelai Putri
+                                        Kediaman Mempelai Putra
                                     </p>
 
                                     <p className="text-start font-glacial-indifference text-[10px] leading-relaxed text-primary">
